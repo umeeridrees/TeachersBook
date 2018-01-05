@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="2">
+                    New User Registration
+                    <a href="Login.html" class="btn btn-success pull-right">Login</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Email</td>
+                <td><input type="text" id="txtEmail" placeholder="Email" /> </td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td>
+                    <input type="password" id="txtPassword" placeholder="Password" />
+                </td>
+            </tr>
+            <tr>
+                <td>Confirm Password</td>
+                <td>
+                    <input type="password" id="txtConfirmPassword" placeholder="Confirm Password" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="btnRegister" class="btn btn-success" type="button" value="Register" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+
+        <p id="message"></p>
+
+    </div>
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#btnRegister').click(function () {
+                $.ajax({
+                    url: '/api/account/register',
+                    method: 'POST',
+                    data: {
+                        email: $('#txtEmail').val(),
+                        password: $('#txtPassword').val(),
+                        confirmPassword: $('#txtConfirmPassword').val()
+                    },
+                    success: function () {
+                        $('#message').text("success");
+                    },
+                    error: function (jqXHR) {
+                        $('#message').text(jqXHR.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

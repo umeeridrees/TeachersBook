@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FYP", "FYP\FYP.csproj", "{D0B9F3AF-E9B4-45C7-99AA-3AF38905841F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{E200EE97-5FB7-4251-A8DF-B32B328E4450}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D0B9F3AF-E9B4-45C7-99AA-3AF38905841F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0B9F3AF-E9B4-45C7-99AA-3AF38905841F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0B9F3AF-E9B4-45C7-99AA-3AF38905841F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0B9F3AF-E9B4-45C7-99AA-3AF38905841F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E200EE97-5FB7-4251-A8DF-B32B328E4450}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E200EE97-5FB7-4251-A8DF-B32B328E4450}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E200EE97-5FB7-4251-A8DF-B32B328E4450}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E200EE97-5FB7-4251-A8DF-B32B328E4450}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EA1EA096-B504-49DC-8313-1B977BBF3DFC}
+	EndGlobalSection
+EndGlobal

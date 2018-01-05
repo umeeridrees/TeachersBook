@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        function ConfirmToken() {
+            if (location.hash) {
+                if (location.hash.split('Email_token=')) {
+                    var accessToken = location.hash.split('Email_token=')[1];
+                    $('#message').text(accessToken);
+                    if (accessToken) {
+                        $.ajax({
+                            url: '/api/Account/ValidateEmailToken',
+                            method: 'POST',
+                            headers: {
+                                'Authorization': 'Bearer '
+                                + sessionStorage.getItem("accessToken")
+                            },
+                            success: function (data) {
+                            },
+                            error: function (jQXHR) {
+                                if (jQXHR.status == "401") {
+                                    $("#message").text("401");
+                                }
+                                else {
+                                    $('#message').text(jqXHR.responseText);
+                                    $('#messagediv').show('fade');
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+        }
+        $(document).ready(function () {
+            if (location.search("Email_Token")) {
+                ConfirmToken();
+            }
+            if (sessionStorage.getItem('accessToken') == null) {
+                $("#message").text("no token saved.");
+            }
+            $('#spanUsername').text('Hello ' + sessionStorage.getItem('userName'));
+
+            $('#btn').click(function () {
+                $.ajax({
+                    url: '/api/values',
+                    method: 'GET',
+                    headers: {
+                        'Authorization': 'Bearer '
+                        + sessionStorage.getItem("accessToken")
+                    },
+                    success: function (data) {
+                        $('#list').empty();
+                        $.each(data, function (index, val) {
+                            $('#list').append('<li>', val, '</li>')
+                        });
+                    },
+                    error: function (jQXHR) {
+                        if (jQXHR.status == "401") {
+                            $("#message").text("401");
+                        }
+                        else {
+                            $('#message').text(jqXHR.responseText);
+                            $('#messagediv').show('fade');
+                        }
+                    }
+                });
+            });
+            $('#clr').click(function () {
+                $('#list').empty();
+            });
+            $('#Logoff').click(function () {
+                sessionStorage.removeItem('accessToken');
+                $("#message").text("logout success");
+            });
+            $('#cpassword').click(function () {
+                window.location.href = "ChangePassword.html";
+            });
+            $('#del').click(function () {
+                window.location.href = "DeleteAccount.html";
+            });
+            $('#email').click(function () {
+                $.ajax({
+                    url: '/api/Account/SendEmailToken',
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer '
+                        + sessionStorage.getItem("accessToken")
+                    },
+                    data:'ljsd',
+                    success: function (data) {
+                        $('#message').text("sent");
+                    },
+                    error: function (jQXHR) {
+                        if (jQXHR.status == "401") {
+                            $("#message").text("401");
+                        }
+                        else {
+                            $('#message').text(jqXHR.responseText);
+                            $('#messagediv').show('fade');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <input id="btn" type="button" value="Get" />
+    <span id="spanUsername" class="text-muted"></span>
+    <input id="clr" type="button" value="Clear" />
+    <input id="Logoff" type="button" value="LogOff" />
+    <input id="cpassword" type="button" value="ChangePassword" />
+    <input id="del" type="button" value="DeleteAccount" />
+    <input id="email" type="button" value="email" />
+    <ul id="list" style="list-style-type:none"></ul>
+    <div id="messagediv">
+        <p id="message"></p>
+    </div>
+</body>
+</html>
